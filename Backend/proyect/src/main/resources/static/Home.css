@@ -1,0 +1,71 @@
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100vh;
+}
+
+.header {
+  height: 45px;
+  background-color: #1a1a1a;
+  color: white;
+  diplay: flex;
+  align-items: center;
+  padding: 20px 20px;
+  margin: 0;
+}
+
+.cards {
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+  "a b c d "
+  "e b f g";
+  gap: 15px;
+  padding: 15px;
+  height: 100vh;
+  height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+.red { background-color: #000; grid-area: a; }
+.blue { background-color: #000; grid-area: b; }
+.green { background-color: #000; grid-area: c; }
+.white { background-color: #000; grid-area: d; }
+.black { background-color: #000; grid-area: e; }
+.gray { background-color: #000; grid-area: f; }
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height:100%;
+  width: 100%;
+  border-radius: 0px;
+  color: white;
+  cursor: pointer;
+  transition: 500ms;
+}
+
+.cards .card p.tip {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.cards .card p.second-text {
+  font-size: 0.7em;
+}
+
+.cards .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px #4444;
+}
+
+.cards:hover > .card:not(:hover) {
+  filter: blur(5px);
+  transform: scale(0.9, 0.9);
+}
