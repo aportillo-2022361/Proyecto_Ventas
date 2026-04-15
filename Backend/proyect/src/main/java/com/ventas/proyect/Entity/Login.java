@@ -17,6 +17,9 @@ public class Login {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "isAdmin")
+    private Boolean isAdmin;
+
     public Integer getCodigoUser() {
         return codigoUser;
     }
@@ -39,5 +42,13 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }
