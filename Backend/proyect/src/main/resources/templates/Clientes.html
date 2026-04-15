@@ -11,7 +11,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Usuarios</title>
+    <title>Clientes</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
@@ -53,14 +53,14 @@
         </thead>
 
         <tbody>
-        <tr th:each="u : ${clientes}">
-            <td th:text="${u.dpi_cliente}"></td>
-            <td th:text="${u.nombre_cliente}"></td>
-            <td th:text="${u.apellido_cliente}"></td>
+        <tr th:each="u :${Clientes}">
+            <td th:text="${u.dpiCliente}"></td>
+            <td th:text="${u.nombreCliente}"></td>
+            <td th:text="${u.apellidoCliente}"></td>
             <td th:text="${u.direccion}"></td>
             <td th:text="${u.estado}"></td>
             <td>
-                <a th:href="@{'/eliminar/' + ${u.idUsuario}}">
+                <a th:href="@{'/clientes/eliminar/' + ${u.dpiCliente}}">
                     <button class="btn-delete">
                         <i class="fas fa-trash"></i>
                     </button>

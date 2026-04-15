@@ -13,7 +13,7 @@ public class LoginServiceImplements implements LoginService{
     private LoginRepository loginRepository;
 
     @Override
-    public Login registrar(String username, String password) {
+    public Login registrar(String username, String password, Boolean isAdmin) {
         if (loginRepository.findByUsername(username) != null) {
             return null;
         }

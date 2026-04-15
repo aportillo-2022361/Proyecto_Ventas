@@ -55,14 +55,14 @@
 
         <tbody>
         <tr th:each="u : ${DetalleVenta}">
-            <td th:text="${u.codigo_detalle_venta}"></td>
+            <td th:text="${u.codigoDetalleVenta}"></td>
             <td th:text="${u.cantidad}"></td>
-            <td th:text="${u.precio_unitario}"></td>
+            <td th:text="${u.precioUnitario}"></td>
             <td th:text="${u.subtotal}"></td>
-            <td th:text="${u.Productos_codigo_producto}"></td>
-            <td th:text="${u.Ventas_codigo_venta}"></td>
+            <td th:text="${u.ProductosCodigoProducto}"></td>
+            <td th:text="${u.VentasCodigoVenta}"></td>
             <td>
-                <a th:href="@{'/eliminar/' + ${u.idUsuario}}">
+                <a th:href="@{'/eliminar/' + ${u.codigoDetalleVenta}}">
                     <button class="btn-delete">
                         <i class="fas fa-trash"></i>
                     </button>

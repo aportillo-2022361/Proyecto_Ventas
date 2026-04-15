@@ -9,12 +9,20 @@
 </head>
 <body>
 <ul>
-    <li class="SignUp"><a href="default.asp">Sign Up</a></li>
-    <li class="Home"><a href="news.asp">Home</a></li>
-    <li class="CRUD"><a href="a.asp">CRUD</a></li>
-    <li class="AboutUs"><a href="contact.asp">About Us</a></li>
+    <li class="SignUp"><a href="@{/registro}">Sign Up</a></li>
+    <li class="Home"><a href="@{/home}">Home</a></li>
+    <li class="CRUD"><a href="">CRUD</a></li>
+    <li class="AboutUs"><a href="">About Us</a></li>
     <li class="logout"><a th:href="@{/usuario}">Logout</a></li>
-    <li class="user"><img src="/user-icon.png" alt="img">user</li>
+    <li class="user">
+        <img th:if="${session.isAdmin == true}"
+             src="/orange.png"
+             alt="Admin">
+
+        <img th:unless="${session.isAdmin == true}"
+             src="/user-icon.png"
+             alt="User">
+    </li>
 </ul>
 <div class="titulo">
     <h1>CREATE</h1>
@@ -23,10 +31,10 @@
     <h1>DELETE</h1>
 </div>
 <div class="control-panel">
-    <a th:href="@{/clientes}" class="tile">
+    <a th:href="@{/clientes/lista}" class="tile">
         <span>CLIENTES</span>
     </a>
-    <a th:href="@{/detalleVenta}" class="tile">
+    <a th:href="@{/detalleventa/lista}" class="tile">
         <span>DETALLES DE VENTAS</span>
     </a>
     <a th:href="@{/productos}" class="tile">
