@@ -13,21 +13,21 @@ public class LoginServiceImplements implements LoginService{
     private LoginRepository loginRepository;
 
     @Override
-    public Login registrar(String Usuario, String password) {
-        if (loginRepository.findByUsuario(Usuario) != null) {
+    public Login registrar(String username, String password) {
+        if (loginRepository.findByUsername(username) != null) {
             return null;
         }
 
         Login u = new Login();
-        u.setUsername(Usuario);
+        u.setUsername(username);
         u.setPassword(password);
 
         return loginRepository.save(u);
     }
 
     @Override
-    public Login login(String Usuario, String password) {
-        Login u = loginRepository.findByUsuario(Usuario);
+    public Login login(String username, String password) {
+        Login u = loginRepository.findByUsername(username);
 
         if(u != null && u.getPassword().equals(password)){
             return u;
