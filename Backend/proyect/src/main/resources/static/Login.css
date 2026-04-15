@@ -26,10 +26,11 @@ html {
   margin: 0 0 30px;
   padding: 0;
   color: #F77331;
+  font-weight: 1000;
   text-align: center;
   font-size: 5.5rem;
   font-weight: bold;
-  letter-spacing: 20px;
+  letter-spacing: 25px;
 }
 
 .login-box .user-box {
@@ -39,7 +40,7 @@ html {
 .login-box .user-box input {
   width: 100%;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 20px;
   color: #F77331;
   margin-bottom: 30px;
   border: none;
@@ -53,7 +54,7 @@ html {
   top: 0;
   left: 0;
   padding: 10px 0;
-  font-size: 25px;
+  font-size: 24px;
   color: #F77331;
   pointer-events: none;
   transition: .5s;
@@ -64,7 +65,7 @@ html {
   top: -20px;
   left: 0;
   color: #F77331;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .login-box form .btn-submit {
@@ -89,7 +90,7 @@ html {
 .login-box .btn-submit:hover {
   background: #F77331;
   color: #272727;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .login-box .btn-submit span {

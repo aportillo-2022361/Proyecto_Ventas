@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Usuarios</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href=/DetalleVentas.css>
+</head>
+
+<body>
+
+<ul>
+    <li class="SignUp"><a href="default.asp">Sign Up</a></li>
+    <li class="Home"><a th:href="@{/home}">Home</a></li>
+    <li class="CRUD"><a href="">CRUD</a></li>
+    <li class="AboutUs"><a href="contact.asp">About Us</a></li>
+    <li class="logout"><a th:href="@{/usuario}">Logout</a></li>
+    <li class="user"><img src="/user-icon.png" alt="img"></li>
+</ul>
+
+<div class="main">
+
+    <h1><i class="fas fa-users"></i>Gestion de Usuarios</h1>
+
+    <div class="search-box">
+        <input type="text" id="buscar" placeholder="Buscar usuario..." onkeyup="filtrarTabla()">
+    </div>
+
+    <table id="tablaUsuarios">
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>username</th>
+            <th>password</th>
+            <th>email</th>
+            <th>rol</th>
+            <th>estado</th>
+            <th>Accion</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="u : ${Usuarios}">
+            <td th:text="${u.codigo_usuario}"></td>
+            <td th:text="${u.username}"></td>
+            <td th:text="${u.password}"></td>
+            <td th:text="${u.email}"></td>
+            <td th:text="${u.rol}"></td>
+            <td th:text="${u.estado}"></td>
+            <td>
+                <a th:href="@{'/eliminar/' + ${u.idUsuario}}">
+                    <button class="btn-delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    function filtrarTabla() {
+        let input = document.getElementById("buscar").value.toLowerCase();
+        let filas = document.querySelectorAll("#tablaUsuarios tbody tr");
+
+        filas.forEach(fila => {
+            let texto = fila.innerText.toLowerCase();
+            fila.style.display = texto.includes(input) ? "" : "none";
+        });
+    }
+</script>
+
+</body>
+
+</html>
+</body>
+
+</html>

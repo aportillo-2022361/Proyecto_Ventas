@@ -14,6 +14,7 @@
     <li class="CRUD"><a href="a.asp">CRUD</a></li>
     <li class="AboutUs"><a href="contact.asp">About Us</a></li>
     <li class="logout"><a th:href="@{/usuario}">Logout</a></li>
+    <li class="user"><img src="/user-icon.png" alt="img">user</li>
 </ul>
 <div class="titulo">
     <h1>CREATE</h1>
@@ -22,19 +23,19 @@
     <h1>DELETE</h1>
 </div>
 <div class="control-panel">
-    <a th:href="@{/usuarios}" class="tile">
+    <a th:href="@{/clientes}" class="tile">
         <span>CLIENTES</span>
     </a>
-    <a th:href="@{/productos}" class="tile">
+    <a th:href="@{/detalleVenta}" class="tile">
         <span>DETALLES DE VENTAS</span>
     </a>
-    <a th:href="@{/ventas}" class="tile">
+    <a th:href="@{/productos}" class="tile">
         <span>PRODUCTOS</span>
     </a>
-    <a th:href="@{/inventario}" class="tile">
+    <a th:href="@{/users}" class="tile">
         <span>USUARIOS</span>
     </a>
-    <a th:href="@{/reportes}" class="tile">
+    <a th:href="@{/ventas}" class="tile">
         <span>VENTAS</span>
     </a>
 </div>

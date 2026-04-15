@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href=/Registro.css>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="left">
+        <img src="/user-icon.png">
+    </div>
+
+    <div class="right">
+
+        <h1>Registro</h1>
+
+        <form th:action="@{/registro}" method="post">
+            <div class="user-box">
+                <input required="true" name="username" type="text">
+                <label>User</label>
+            </div>
+            <div class="user-box">
+                <input required="true" name="password" type="password">
+                <label>Password</label>
+            </div>
+            <button type="submit" class="btn-submit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Submit
+            </button>
+        </form>
+
+        <div class="switch">
+            <p>Do you have an account? <a th:href="@{/usuario}" class="a2">Sign In!</a></p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
