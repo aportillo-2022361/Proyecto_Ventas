@@ -1,7 +1,7 @@
 package com.ventas.proyect.Controller;
 
 import com.ventas.proyect.Entity.Login;
-import com.ventas.proyect.Entity.Usuario;
+import com.ventas.proyect.Repository.LoginRepository;
 import com.ventas.proyect.Service.LoginService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,17 @@ public class LoginController {
                           HttpSession session,
                           Model model) {
 
-        if ("Sniper".equals(username) && "1234".equals(password)) {
-            Login usuarioTemporal = new Login();
-            usuarioTemporal.setUsername("Sniper");
-            session.setAttribute("usuarioLogueado", usuarioTemporal);
+        System.out.println("Intentando login con: " + username); // Debug
+        Login l = service.login(username, password);
+
+        if (l != null) {
+            session.setAttribute("isAdmin", l.getAdmin());
+            System.out.println("Login exitoso para: " + l.getUsername()); // Debug
+            session.setAttribute("usuarioLogueado", l);
             return "redirect:/home";
         } else {
-            model.addAttribute("error", "Credenciales incorrectas (Modo Emergencia)");
+            System.out.println("Login fallido: Usuario no encontrado"); // Debug
+            model.addAttribute("error", "Credenciales incorrectas");
             return "Login";
         }
     }
@@ -49,11 +53,12 @@ public class LoginController {
     }
 
     @PostMapping("/registro")
-    public String guardar(@RequestParam String usuario,
+    public String guardar(@RequestParam String username,
                           @RequestParam String password,
+                          @RequestParam Boolean isAdmin,
                           Model model) {
 
-        Login login = service.registrar(usuario, password);
+        Login login = service.registrar(username, password, isAdmin);
 
         if (login == null) {
             model.addAttribute("error", "Usuario ya existe");

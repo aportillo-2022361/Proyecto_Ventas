@@ -5,12 +5,14 @@ import com.ventas.proyect.Service.DetalleVentaService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/detalleVenta")
+@Controller
+@RequestMapping("/detalleventa")
 public class DetalleVentaController {
     private final DetalleVentaService detalleVentaService;
 
@@ -18,9 +20,12 @@ public class DetalleVentaController {
         this.detalleVentaService = detalleVentaService;
     }
 
-    @GetMapping
-    public List<DetalleVenta> getAllDetalleVenta() {
-        return detalleVentaService.getAllDetalleVenta();
+    @GetMapping("/lista")
+    public String listarDetalles(Model model) {
+        List<DetalleVenta> lista = detalleVentaService.getAllDetalleVenta();
+        System.out.println("Cantidad de detalles encontrados: " + lista.size());
+        model.addAttribute("detalles", lista);
+        return "DetalleVentas";
     }
 
     @PostMapping
@@ -35,9 +40,9 @@ public class DetalleVentaController {
         return ResponseEntity.ok(updateDetalleVenta);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteDetalleVenta (@Valid @PathVariable Integer id) {
+    @GetMapping("/eliminar/{id}")
+    public String deleteDetalleVenta (@Valid @PathVariable Integer id) {
         detalleVentaService.deleteDetalleVenta(id);
-        return ResponseEntity.ok("Detalle eliminado exitosamente");
+        return "redirect:/detalleventa/lista";
     }
 }
