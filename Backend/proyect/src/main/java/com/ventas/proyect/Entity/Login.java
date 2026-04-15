@@ -8,8 +8,8 @@ public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "codigo_producto")
-    private Integer codigoProducto;
+    @Column(name = "codigo_user")
+    private Integer codigoUser;
 
     @Column(name = "username")
     private String username;
@@ -17,12 +17,12 @@ public class Login {
     @Column(name = "password")
     private String password;
 
-    public Integer getCodigoProducto() {
-        return codigoProducto;
+    public Integer getCodigoUser() {
+        return codigoUser;
     }
 
-    public void setCodigoProducto(Integer codigoProducto) {
-        this.codigoProducto = codigoProducto;
+    public void setCodigoUser(Integer codigoUser) {
+        this.codigoUser = codigoUser;
     }
 
     public String getUsername() {
