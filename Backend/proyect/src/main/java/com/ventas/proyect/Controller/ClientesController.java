@@ -5,12 +5,14 @@ import com.ventas.proyect.Service.ClientesService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/clientes")
+@Controller
+@RequestMapping("/clientes")
 public class ClientesController {
     private final ClientesService clientesService;
 
@@ -18,9 +20,12 @@ public class ClientesController {
         this.clientesService = clientesService;
     }
 
-    @GetMapping
-    public List<Clientes> getAllClients() {
-        return clientesService.getAllClients();
+    @GetMapping("/lista")
+    public String listarClientes(Model model) {
+        List<Clientes> lista = clientesService.getAllClients();
+        System.out.println("Cantidad de clientes encontrados: " + lista.size());
+        model.addAttribute("Clientes", lista);
+        return "Clientes";
     }
 
     @PostMapping
@@ -35,9 +40,9 @@ public class ClientesController {
         return ResponseEntity.ok(updateClient);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteClient(@Valid @PathVariable Integer id) {
+    @GetMapping("/eliminar/{id}")
+    public String deleteClient(@Valid @PathVariable Integer id) {
         clientesService.deleteClients(id);
-        return ResponseEntity.ok("Estudiante eliminado");
+        return "redirect:/clientes/lista";
     }
 }
