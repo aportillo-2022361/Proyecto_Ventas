@@ -1,7 +1,6 @@
 package com.ventas.proyect.Controller;
 
 import com.ventas.proyect.Entity.Login;
-import com.ventas.proyect.Repository.LoginRepository;
 import com.ventas.proyect.Service.LoginService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +26,22 @@ public class LoginController {
 
     @PostMapping("/login")
     public String validar(@RequestParam("username") String username,
-                          @RequestParam("password") String password,
-                          HttpSession session,
-                          Model model) {
+            @RequestParam("password") String password,
+            HttpSession session,
+            Model model) {
 
         System.out.println("Intentando login con: " + username); // Debug
         Login l = service.login(username, password);
+
+        // Instrucciones: En dado caso la DB no llegara a conectar con el usuario
+
+        /*
+         * if (usuario.equals("admin") && password.equals("123")) {
+         * // Esto simula que la DB nos dio el OK
+         * session.setAttribute("isAdmin", true);
+         * return "redirect:/home";
+         * }
+         */
 
         if (l != null) {
             session.setAttribute("isAdmin", l.getAdmin());
@@ -54,9 +63,9 @@ public class LoginController {
 
     @PostMapping("/registro")
     public String guardar(@RequestParam String username,
-                          @RequestParam String password,
-                          @RequestParam Boolean isAdmin,
-                          Model model) {
+            @RequestParam String password,
+            @RequestParam Boolean isAdmin,
+            Model model) {
 
         Login login = service.registrar(username, password, isAdmin);
 
@@ -130,4 +139,3 @@ public class LoginController {
         return "Ventas";
     }
 }
-
