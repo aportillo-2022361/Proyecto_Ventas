@@ -5,12 +5,14 @@ import com.ventas.proyect.Service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/usuario")
+@Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
     private final UsuarioService usuarioService;
 
@@ -18,9 +20,12 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping
-    public List<Usuario> getAllUser() {
-        return usuarioService.getAllUsers();
+    @GetMapping("/lista")
+    public String listarDetalles(Model model) {
+        List<Usuario> lista = usuarioService.getAllUsers();
+        System.out.println("Cantidad de usuarios encontrados: " + lista.size());
+        model.addAttribute("Usuario", lista);
+        return "Users";
     }
 
     @PostMapping
@@ -35,9 +40,9 @@ public class UsuarioController {
         return ResponseEntity.ok(updateUser);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser (@Valid @PathVariable Integer id) {
+    @GetMapping("/eliminar/{id}")
+    public String deleteUser (@Valid @PathVariable Integer id) {
         usuarioService.deleteUser(id);
-        return ResponseEntity.ok("Se ha eliminado el usuario exitosamente");
+        return "redirect:/usuario/lista";
     }
 }
