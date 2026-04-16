@@ -5,12 +5,14 @@ import com.ventas.proyect.Service.ProductoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/producto")
+@Controller
+@RequestMapping("/producto")
 public class ProductoController {
     private final ProductoService productoService;
 
@@ -18,9 +20,12 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    @GetMapping
-    public List<Producto> getAllProductos() {
-        return productoService.getAllProductos();
+    @GetMapping("/lista")
+    public String listarDetalles(Model model) {
+        List<Producto> lista = productoService.getAllProductos();
+        System.out.println("Cantidad de productos encontrados: " + lista.size());
+        model.addAttribute("Productos", lista);
+        return "Producto";
     }
 
     @PostMapping
@@ -35,9 +40,9 @@ public class ProductoController {
         return ResponseEntity.ok(updateProducto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProducto (@Valid @PathVariable Integer id) {
+    @GetMapping("/eliminar/{id}")
+    public String deleteProducto (@Valid @PathVariable Integer id) {
         productoService.deleteProductos(id);
-        return ResponseEntity.ok("Se ha eliminado el producto");
+        return "redirect:/producto/lista";
     }
 }
