@@ -17,8 +17,8 @@ ul {
 }
 
 .user img {
-    width: 7rem;
-    height: 4rem;
+    border-radius: 20px;
+    width: 120px;
 }
 
 ul li a {

@@ -7,86 +7,90 @@
 </head>
 
 <body>
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <title>Clientes</title>
+    <head>
+        <title>Clientes</title>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-    <!-- Iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href=/Clientes.css>
-</head>
+        <!-- Iconos -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href=/Clientes.css>
+    </head>
 
-<body>
+    <body>
 
-<ul>
-    <li class="SignUp"><a href="default.asp">Sign Up</a></li>
-    <li class="Home"><a th:href="@{/home}">Home</a></li>
-    <li class="CRUD"><a href="">CRUD</a></li>
-    <li class="AboutUs"><a href="contact.asp">About Us</a></li>
-    <li class="logout"><a th:href="@{/usuario}">Logout</a></li>
-    <li class="user"><img src="/user-icon.png" alt="img"></li>
-</ul>
+        <ul>
+            <li class="SignUp"><a href="default.asp">Sign Up</a></li>
+            <li class="Home"><a th:href="@{/home}">Home</a></li>
+            <li class="CRUD"><a href="">CRUD</a></li>
+            <li class="AboutUs"><a href="contact.asp">About Us</a></li>
+            <li class="logout"><a th:href="@{/usuario}">Logout</a></li>
+            <li class="user">
+                <img th:if="${session.isAdmin == true}" src="/YO.jpeg" alt="Admin">
 
-<div class="main">
+                <img th:unless="${session.isAdmin == true}" src="/user-icon.png" alt="User">
+            </li>
+        </ul>
 
-    <h1><i class="fas fa-users"></i> Gestión de Clientes</h1>
+        <div class="main">
 
-    <div class="search-box">
-        <input type="text" id="buscar" placeholder="Buscar cliente..." onkeyup="filtrarTabla()">
-    </div>
+            <h1><i class="fas fa-users"></i> Gestión de Clientes</h1>
 
-    <table id="tablaUsuarios">
-        <thead>
-        <tr>
-            <th>DPI</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Direccion</th>
-            <th>Estado</th>
-            <th>Accion</th>
-        </tr>
-        </thead>
+            <div class="search-box">
+                <input type="text" id="buscar" placeholder="Buscar cliente..." onkeyup="filtrarTabla()">
+            </div>
 
-        <tbody>
-        <tr th:each="u :${Clientes}">
-            <td th:text="${u.dpiCliente}"></td>
-            <td th:text="${u.nombreCliente}"></td>
-            <td th:text="${u.apellidoCliente}"></td>
-            <td th:text="${u.direccion}"></td>
-            <td th:text="${u.estado}"></td>
-            <td>
-                <a th:href="@{'/clientes/eliminar/' + ${u.dpiCliente}}">
-                    <button class="btn-delete">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            <table id="tablaUsuarios">
+                <thead>
+                    <tr>
+                        <th>DPI</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Direccion</th>
+                        <th>Estado</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
 
-</div>
+                <tbody>
+                    <tr th:each="u :${Clientes}">
+                        <td th:text="${u.dpiCliente}"></td>
+                        <td th:text="${u.nombreCliente}"></td>
+                        <td th:text="${u.apellidoCliente}"></td>
+                        <td th:text="${u.direccion}"></td>
+                        <td th:text="${u.estado}"></td>
+                        <td>
+                            <a th:href="@{'/clientes/eliminar/' + ${u.dpiCliente}}">
+                                <button class="btn-delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-<script>
-    function filtrarTabla() {
-        let input = document.getElementById("buscar").value.toLowerCase();
-        let filas = document.querySelectorAll("#tablaUsuarios tbody tr");
+        </div>
 
-        filas.forEach(fila => {
-            let texto = fila.innerText.toLowerCase();
-            fila.style.display = texto.includes(input) ? "" : "none";
-        });
-    }
-</script>
+        <script>
+            function filtrarTabla() {
+                let input = document.getElementById("buscar").value.toLowerCase();
+                let filas = document.querySelectorAll("#tablaUsuarios tbody tr");
 
-</body>
+                filas.forEach(fila => {
+                    let texto = fila.innerText.toLowerCase();
+                    fila.style.display = texto.includes(input) ? "" : "none";
+                });
+            }
+        </script>
 
-</html>
+    </body>
+
+    </html>
 </body>
 
 </html>

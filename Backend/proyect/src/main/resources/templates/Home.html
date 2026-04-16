@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -7,45 +8,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/Home.css}">
 </head>
-<body>
-<ul>
-    <li class="SignUp"><a href="@{/registro}">Sign Up</a></li>
-    <li class="Home"><a href="@{/home}">Home</a></li>
-    <li class="CRUD"><a href="">CRUD</a></li>
-    <li class="AboutUs"><a href="">About Us</a></li>
-    <li class="logout"><a th:href="@{/usuario}">Logout</a></li>
-    <li class="user">
-        <img th:if="${session.isAdmin == true}"
-             src="/orange.png"
-             alt="Admin">
 
-        <img th:unless="${session.isAdmin == true}"
-             src="/user-icon.png"
-             alt="User">
-    </li>
-</ul>
-<div class="titulo">
-    <h1>CREATE</h1>
-    <h1>READ</h1>
-    <h1>UPDATE</h1>
-    <h1>DELETE</h1>
-</div>
-<div class="control-panel">
-    <a th:href="@{/clientes/lista}" class="tile">
-        <span>CLIENTES</span>
-    </a>
-    <a th:href="@{/detalleventa/lista}" class="tile">
-        <span>DETALLES DE VENTAS</span>
-    </a>
-    <a th:href="@{/productos}" class="tile">
-        <span>PRODUCTOS</span>
-    </a>
-    <a th:href="@{/users}" class="tile">
-        <span>USUARIOS</span>
-    </a>
-    <a th:href="@{/ventas}" class="tile">
-        <span>VENTAS</span>
-    </a>
-</div>
+<body>
+    <ul>
+        <li class="SignUp"><a th:href="@{/registro}">Sign Up</a></li>
+        <li class="Home"><a href="@{/home}">Home</a></li>
+        <li class="CRUD"><a href="">CRUD</a></li>
+        <li class="AboutUs"><a href="">About Us</a></li>
+        <li class="logout"><a th:href="@{/usuario}">Logout</a></li>
+        <li class="user">
+            <img th:if="${session.isAdmin == true}" src="/YO.jpeg" alt="Admin">
+
+            <img th:unless="${session.isAdmin == true}" src="/user-icon.png" alt="User">
+        </li>
+    </ul>
+    <div class="titulo">
+        <h1>CREATE</h1>
+        <h1>READ</h1>
+        <h1>UPDATE</h1>
+        <h1>DELETE</h1>
+    </div>
+    <div class="control-panel">
+        <a th:href="@{/clientes/lista}" class="tile">
+            <span>CLIENTES</span>
+        </a>
+        <a th:href="@{/detalleventa/lista}" class="tile">
+            <span>DETALLES DE VENTAS</span>
+        </a>
+        <a th:href="@{/producto/lista}" class="tile">
+            <span>PRODUCTOS</span>
+        </a>
+        <a th:href="@{/usuario/lista}" class="tile">
+            <span>USUARIOS</span>
+        </a>
+        <a th:href="@{/ventas/lista}" class="tile">
+            <span>VENTAS</span>
+        </a>
+    </div>
 </body>
+
 </html>
