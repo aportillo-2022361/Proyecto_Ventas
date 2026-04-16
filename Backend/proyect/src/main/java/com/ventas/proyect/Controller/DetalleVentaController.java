@@ -24,7 +24,7 @@ public class DetalleVentaController {
     public String listarDetalles(Model model) {
         List<DetalleVenta> lista = detalleVentaService.getAllDetalleVenta();
         System.out.println("Cantidad de detalles encontrados: " + lista.size());
-        model.addAttribute("detalles", lista);
+        model.addAttribute("DetalleVenta", lista);
         return "DetalleVentas";
     }
 
