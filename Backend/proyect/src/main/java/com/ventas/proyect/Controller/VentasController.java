@@ -5,12 +5,14 @@ import com.ventas.proyect.Service.VentasService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/ventas")
+@Controller
+@RequestMapping("/ventas")
 public class VentasController {
     private final VentasService ventasService;
 
@@ -18,9 +20,12 @@ public class VentasController {
         this.ventasService = ventasService;
     }
 
-    @GetMapping
-    public List<Ventas> getAllSales() {
-        return ventasService.getAllSales();
+    @GetMapping("/lista")
+    public String listarDetalles(Model model) {
+        List<Ventas> lista = ventasService.getAllSales();
+        System.out.println("Cantidad de ventas encontrados: " + lista.size());
+        model.addAttribute("Ventas", lista);
+        return "Ventas";
     }
 
     @PostMapping
@@ -35,9 +40,9 @@ public class VentasController {
         return ResponseEntity.ok(updateSales);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteSales (@Valid @PathVariable Integer id) {
+    @GetMapping("/eliminar/{id}")
+    public String deleteSales (@Valid @PathVariable Integer id) {
         ventasService.deleteSales(id);
-        return ResponseEntity.ok("Se ha eliminado la venta exitosamente");
+        return "redirect:/ventas/lista";
     }
 }
